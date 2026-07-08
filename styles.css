@@ -161,17 +161,20 @@ body {
 
 /* Home Link: Fade In Profile */
 .tooltip-fade .tooltip-box {
+    transform: translate(-50%, 0);
     transition: opacity 0.2s ease-in-out;
 }
 
 /* Projects Link: Slide Up Profile */
 .tooltip-slide-up .tooltip-box {
-    transform: translate(-50%, 8px);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.25s ease-in-out;
+    transform: translate(-50%, 12px);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.2s ease-in-out;
 }
+
 .tooltip-slide-up:hover .tooltip-box {
     transform: translate(-50%, 0);
+    opacity: 1;
 }
 
 /* Blog Link: Scale Pop Profile */
@@ -183,16 +186,19 @@ body {
 }
 .tooltip-scale:hover .tooltip-box {
     transform: translate(-50%, 0) scale(1);
+    opacity: 1;
 }
 
 /* Contact Link: Slide Down Profile */
 .tooltip-slide-down .tooltip-box {
-    transform: translate(-50%, -8px);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.25s ease-in-out;
+    transform: translate(-50%, -12px);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.2s ease-in-out;
 }
+
 .tooltip-slide-down:hover .tooltip-box {
     transform: translate(-50%, 0);
+    opacity: 1;
 }
 
 /* 5. SYSTEM FOOTER */
