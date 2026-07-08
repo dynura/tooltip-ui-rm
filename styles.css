@@ -1,0 +1,244 @@
+/* 0. DESIGN SYSTEM VARIABLE ARRAYS & FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-color: #f1f1f1;
+    --nav-bg: #ffffff;
+    --tooltip-bg: #0f172a;
+    --tooltip-text: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --link-hover: #d293e5;
+    --border-color: #e5e7eb;
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0b0f19;
+        --nav-bg: #111827;
+        --tooltip-bg: #f8fafc;
+        --tooltip-text: #0f172a;
+        --text-primary: #f9fafb;
+        --text-secondary: #9ca3af;
+        --link-hover: #9d76a5;
+        --border-color: #1f2937;
+    }
+}
+
+/* 1. GLOBAL RESET & NATURAL PAGE FLOW */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+html {
+    scrollbar-gutter: stable;
+    background-color: var(--bg-color);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    padding: 60px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.project-header {
+    text-align: center;
+}
+
+.project-header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+}
+
+.project-header p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+/* 2. NAVBAR SETTINGS */
+.tooltip-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.tooltip-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--nav-bg);
+    padding: 16px 36px;
+    border-radius: 100px;
+    box-shadow: var(--shadow-md);
+    gap: 20px;
+    width: max-content;
+    border: none;
+}
+
+.nav-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--link-hover);
+}
+
+.nav-divider {
+    color: var(--border-color);
+    font-size: 1.1rem;
+    user-select: none;
+}
+
+/* 3. CORE TOOLTIP STRUCTURE & VISIBILITY */
+.tooltip-box {
+    position: absolute;
+    bottom: 160%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+    z-index: 10;
+    
+    /* State Initializations */
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+/* Arrow Tip Triangle */
+.tooltip-box::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--tooltip-bg) transparent transparent transparent;
+}
+
+.nav-item:hover .tooltip-box {
+    opacity: 1;
+}
+
+/* 4. TOOLTIP ANIMATION */
+
+/* Home Link: Fade In Profile */
+.tooltip-fade .tooltip-box {
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Projects Link: Slide Up Profile */
+.tooltip-slide-up .tooltip-box {
+    transform: translate(-50%, 8px);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.25s ease-in-out;
+}
+.tooltip-slide-up:hover .tooltip-box {
+    transform: translate(-50%, 0);
+}
+
+/* Blog Link: Scale Pop Profile */
+.tooltip-scale .tooltip-box {
+    transform: translate(-50%, 4px) scale(0.9);
+    transform-origin: bottom center;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.2s ease-in-out;
+}
+.tooltip-scale:hover .tooltip-box {
+    transform: translate(-50%, 0) scale(1);
+}
+
+/* Contact Link: Slide Down Profile */
+.tooltip-slide-down .tooltip-box {
+    transform: translate(-50%, -8px);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.25s ease-in-out;
+}
+.tooltip-slide-down:hover .tooltip-box {
+    transform: translate(-50%, 0);
+}
+
+/* 5. SYSTEM FOOTER */
+.project-footer {
+    text-align: center;
+    padding-top: 24px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-top: 1px dashed var(--border-color);
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 60px;
+}
+
+.project-footer p {
+    margin-bottom: 6px;
+}
+
+.project-footer .credit-text {
+    font-size: 0.775rem;
+    opacity: 0.6;
+}
+
+/* 6. MOBILE RESPONSIVENESS */
+@media (max-width: 550px) {
+    .wrapper {
+        margin-top: 40px;
+        gap: 30px;
+    }
+
+    body {
+        padding: 24px 16px;
+    }
+    
+    .tooltip-nav {
+        padding: 12px 24px;
+        gap: 12px;
+    }
+    
+    .nav-link {
+        font-size: 1rem;
+        padding: 6px 8px;
+    }
+    
+    .tooltip-box {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
